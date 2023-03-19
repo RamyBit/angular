@@ -1,10 +1,10 @@
 import { Qanswer } from "./qanswer";
 
-export interface Question {
+export interface ScQuestion {
     qid: number,
     qtyp: string,
     qtxt: string[],
-    qanswers: Qanswer[],
-    qcorrect?: string,
-    qinfo: []
+    qanswer: Qanswer[],
+    qcorrect: string,
+    qinfo: string
 }
