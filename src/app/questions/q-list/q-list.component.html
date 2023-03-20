@@ -1,6 +1,6 @@
 <h1>Questions</h1>
 <ul class="question-list" *ngIf="questions$ | async as questions">
-    <li *ngFor="let question of questions$ | async">
+    <li *ngFor="let question of questions">
        <ll-q-list-item [question]="question"
        (click)="doSelect(question)"></ll-q-list-item>
     </li>

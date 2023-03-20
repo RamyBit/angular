@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
-import { QueueScheduler } from 'rxjs/internal/scheduler/QueueScheduler';
+import { catchError, Observable, of } from 'rxjs';
 import { Question } from './question';
 import { map } from 'rxjs/operators'
 
@@ -9,9 +8,11 @@ import { map } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class QRepoService {
-  private qUrl = './assets/test.json'
+  private qUrl = './assets/data/qdata.json'
   // private questions$: Observable<Question[]> ;
   // private questions : Question[]=[] ;
+  // private question: Question = {};
+  question = {}
   constructor(private http: HttpClient) {
     this.getAll().subscribe(data => {
       console.log(data);
@@ -31,7 +32,9 @@ export class QRepoService {
     )
   }
   getSingle(id: number): any{
-    return this.getAll().pipe(map(qs => qs.find(q => q.qid === id)));
+  
+    this.question = this.getAll().pipe(map(qs => qs.find(q => q.qid === id)));
+    console.log(this.question) ;
  
   }
 

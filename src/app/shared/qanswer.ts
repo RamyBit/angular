@@ -1,4 +1,4 @@
 export interface Qanswer {
-    txt: string[],
+    txt: string,
     correct: boolean
 }

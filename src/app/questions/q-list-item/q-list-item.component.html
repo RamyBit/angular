@@ -5,12 +5,17 @@
             {{ question.qtxt}}
         </p>
     </a>
-    <div class="answers-sc" *ngif="question.qtyp === 'sc'">
-        <div>
+    <div >
+        <!-- <div class="answers-sc" *ngif="question.qtyp === 'sc'"> --><div>
             <h2>Answers</h2>
             <ul>
 
-                <li *ngFor="let ans of question?.qanswers"> {{ans}} </li>
+                <li *ngFor="let ans of question?.qanswers">
+                    <p *ngFor="let text of ans?.txt">
+                        {{text}}
+                    </p>
+                     
+                </li>
 
             </ul>
         </div>
