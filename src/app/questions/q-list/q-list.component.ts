@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { QRepoService } from '../shared/q-repo.service';
-import { Question } from '../shared/question';
+import { QRepoService } from '../../shared/q-repo.service';
+import { Question } from '../../shared/question';
 
 
 @Component({
@@ -11,14 +11,19 @@ import { Question } from '../shared/question';
 })
 export class QListComponent {
   questions$: Observable<Question[]>;
-  // questions$: any;
+  questions: any;
+  @Output() selectQuestion = new EventEmitter<Question>();
   
   constructor(private service: QRepoService){
     this.questions$ = this.service.getAll();
+    console.log(this.questions$);
   }
   ngOnInit(){
     this.service.getAll().subscribe(data => {
-         console.log(data);
+         this.questions = data;
      });
-}
+  }
+  doSelect(question: Question){
+    this.selectQuestion.emit(question)
+  }
 }
