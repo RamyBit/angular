@@ -1,0 +1,31 @@
+<div class="q-list-item">
+    <a *ngIf="question" [routerLink]="['/questions',question.qid.toString()]" class="list-item">
+        <h2>Question:{{ question.qid }}</h2>
+        <p>
+            {{ question.qtxt}}
+        </p>
+    </a>
+    <div >
+        <!-- <div class="answers-sc" *ngif="question.qtyp === 'sc'"> --><div>
+            <h2>Answers</h2>
+            <ul>
+
+                <li *ngFor="let ans of question?.qanswers">
+                    <p *ngFor="let text of ans?.txt">
+                        {{text}}
+                    </p>
+                     
+                </li>
+
+            </ul>
+        </div>
+        <div>
+            <h2>Correct Answer</h2>
+            {{ question?.qcorrect }}
+        </div>
+        <div *ngIf="question?.qinfo">
+            <h2>Info:</h2>
+            {{question?.qinfo}}
+        </div>
+    </div>
+</div>

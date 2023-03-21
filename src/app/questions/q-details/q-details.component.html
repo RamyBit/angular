@@ -1,0 +1,29 @@
+<div class="details" *ngIf="question$ | async as question">
+    
+    <h2>Question:{{ question.qid }}</h2>
+    <p>
+        {{ question.qtxt}}
+    </p>
+    <div class="answers-sc" *ngif="question.qtyp === 'sc'">
+        <div>
+            <h2>Answers</h2>
+            <ul>
+
+                <li *ngFor="let ans of question.qanswers"> {{ans}} </li>
+
+            </ul>
+        </div>
+        <div>
+            <h2>Correct Answer</h2>
+            {{ question.qcorrect }}
+        </div>
+        <div *ngIf="question.qinfo">
+            <h2>Info:</h2>
+            {{question.qinfo}}
+        </div>
+    </div>
+   
+    <a class="button" routerLink="..">Back</a>
+    <!-- <button class="red" (click)="nextQuestion(question.qid)">Next</button> -->
+
+</div>

@@ -3,19 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { QListComponent } from './q-list/q-list.component';
 import { HttpClientModule} from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { QuestionsModule } from './questions/questions.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    QListComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    QuestionsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
