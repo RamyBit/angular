@@ -5,6 +5,7 @@ import { QuestionsRoutingModule } from './questions-routing.module';
 import { QDetailsComponent } from './q-details/q-details.component';
 import { QListItemComponent } from './q-list-item/q-list-item.component';
 import { QListComponent } from './q-list/q-list.component';
+import { MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [ 
@@ -14,6 +15,7 @@ import { QListComponent } from './q-list/q-list.component';
   imports: [
     CommonModule,
     QuestionsRoutingModule,
+    MatCheckboxModule
    
   ],
 

@@ -17,7 +17,7 @@ constructor(
   private route: ActivatedRoute,
   private router: Router
 ){
-  const qid = parseInt(this.route.snapshot.paramMap.get('qid')!);
+  const qid = this.route.snapshot.paramMap.get('qid')!;
   this.question$ = this.service.getSingle(qid);
 }
 }

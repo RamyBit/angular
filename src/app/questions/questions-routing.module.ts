@@ -6,7 +6,7 @@ import { QListComponent } from './q-list/q-list.component';
 
 const routes: Routes = [
   {
-    path: 'question',
+    path: 'questions',
     component: QListComponent,
   },
   {

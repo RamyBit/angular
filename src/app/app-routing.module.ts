@@ -14,14 +14,14 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
-  {
-    path:'questions',
-    component: QListComponent
-  },
-  {
-    path: 'questions/:id',
-    component: QDetailsComponent
-  }
+  // {
+  //   path:'questions',
+  //   component: QListComponent
+  // },
+  // {
+  //   path: 'questions/:id',
+  //   component: QDetailsComponent
+  // }
 ];
 
 @NgModule({
