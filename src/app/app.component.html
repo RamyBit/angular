@@ -1,9 +1,27 @@
-<nav>
-    <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
-    <a routerLink="/questions" routerLinkActive="active" ariaCurrentWhenActive="page">Questions</a>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button>
+        </button>
+        <h1>LLCE</h1>
+        <span class="toolbar-spacer"></span>
+        <div>
+            <a mat-button [routerLink]="'/home'"> Home </a>
+            <a mat-button [routerLink]="'/questions'"> Learn Mode </a>
+            <a mat-button [routerLink]="'/details'"> Check Mode </a>
+            <a mat-button [routerLink]="'/'"> Exam Mode </a>
 
-</nav>
-    
+        </div>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row>
+        <span style="font-size: 12px;">
+            LLCE helps you to learn, check your skills and do a simulated Exam</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+<a routerLink="/questions" routerLinkActive="active" ariaCurrentWhenActive="page">Questions</a>
+
 
 <main>
 

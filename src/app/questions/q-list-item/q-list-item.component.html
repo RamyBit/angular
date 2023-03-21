@@ -26,9 +26,9 @@
 
                 <li *ngFor="let ans of question?.qanswers">
                     <p *ngFor="let text of ans?.txt">
-                        <mat-checkbox>test</mat-checkbox>
+                        <mat-checkbox>{{text}}</mat-checkbox>
 
-                        {{text}}
+                        
                     </p>
                      
                 </li>
@@ -39,7 +39,7 @@
             <h2>Correct Answer</h2>
             {{ question?.qcorrect }}
         </div>
-        <div *ngIf="question?.qinfo">
+        <div *ngIf="hasInfo">
             <h2>Info:</h2>
             {{question?.qinfo}}
         </div>

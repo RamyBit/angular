@@ -13,9 +13,11 @@ export class QListItemComponent {
     mc: false,
     fi: false
   }
+  hasInfo: boolean = false;
 
   ngOnChanges(){
     this.setType(this.question);
+    this.checkInfo(this.question);
   }
 
   setType(q?: Question){
@@ -31,6 +33,11 @@ export class QListItemComponent {
       this.qtype.fi = true;
       this.qtype.sc = false;
       this.qtype.mc = false;
+    }
+  }
+  checkInfo(q?:Question){
+    if(q?.qinfo.length !== 0){
+      this.hasInfo = true;
     }
   }
 }

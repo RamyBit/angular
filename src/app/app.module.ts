@@ -8,9 +8,11 @@ import { HomeComponent } from './home/home.component';
 import { QuestionsModule } from './questions/questions.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule} from '@angular/material/checkbox';
-
-
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule} from '@angular/material/icon';
+import { MatSidenavModule} from '@angular/material/sidenav'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,8 +24,15 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
     HttpClientModule,
     QuestionsModule,
     BrowserAnimationsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatButtonModule
   ],
+ 
+
   providers: [],
   bootstrap: [AppComponent]
 })
