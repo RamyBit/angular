@@ -13,6 +13,8 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatSidenavModule} from '@angular/material/sidenav'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule} from '@angular/material/button';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,7 @@ import { MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatSidenavModule,
     MatSlideToggleModule,
-    MatButtonModule
+    MatButtonModule,
   ],
  
 
