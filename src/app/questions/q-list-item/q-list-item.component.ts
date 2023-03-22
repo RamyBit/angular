@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Question } from 'src/app/shared/question';
+import { MatRadioChange } from '@angular/material/radio';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+
 
 @Component({
   selector: 'll-q-list-item',
@@ -14,6 +19,7 @@ export class QListItemComponent {
     fi: false
   }
   hasInfo: boolean = false;
+  fiAns : string = "";
 
   ngOnChanges(){
     this.setType(this.question);
@@ -40,5 +46,15 @@ export class QListItemComponent {
       this.hasInfo = true;
     }
   }
+  radioButtonChange(data: MatRadioChange) {
+    console.log(data.value);
+}
+  checkMCAns(a : number){
+    console.log("MC",a )
+  }
+  checkFIAns(a?: string){
+    console.log(a);
+  }
+  
 }
 

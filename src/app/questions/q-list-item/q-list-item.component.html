@@ -6,34 +6,54 @@
             {{question.qtyp}}
         </p>
     </a>
-    <div >
+    <div>
         <div class="answers-sc" *ngIf="qtype.sc">
             <h2>Answers</h2>
             <ul>
+                <mat-radio-group aria-label="Select an option">
+                    <li *ngFor="let ans of question?.qanswers; index as i">
 
-                <li *ngFor="let ans of question?.qanswers">
-                    <p *ngFor="let text of ans?.txt">
-                        {{text}}
-                    </p>
-                     
-                </li>
+                        <p *ngFor="let text of ans?.txt">
 
+                            <mat-radio-button [value]="i + 1"
+                                (change)="radioButtonChange($event)">{{text}}</mat-radio-button>
+
+                        </p>
+
+                    </li>
+                </mat-radio-group>
             </ul>
+
         </div>
         <div class="answers-mc" *ngIf="qtype.mc">
             <h2>Answers</h2>
             <ul>
 
-                <li *ngFor="let ans of question?.qanswers">
+                <li *ngFor="let ans of question?.qanswers; index as i">
                     <p *ngFor="let text of ans?.txt">
-                        <mat-checkbox>{{text}}</mat-checkbox>
+                        <mat-checkbox class="item-check" (change)="checkMCAns(i + 1 )">{{text}}</mat-checkbox>
 
-                        
+
                     </p>
-                     
+
                 </li>
 
             </ul>
+        </div>
+        <div class="answers-fi" *ngIf="qtype.fi">
+            <h2>Answers</h2>
+            <form class="fi-form">
+                <mat-form-field class="fi-full-width">
+                <span matPrefix> </span>
+                <input type="text" matInput placeholder="Answer" name= "fiAns" [(ngModel)]= "fiAns" 
+                (change)="checkFIAns(fiAns)">
+                <button matSuffix mat-button><mat-icon >spellcheck</mat-icon></button>
+                </mat-form-field>
+                <br/>
+                {{fiAns}}
+                </form>
+
+
         </div>
         <div>
             <h2>Correct Answer</h2>

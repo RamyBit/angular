@@ -39,11 +39,10 @@ export class QRepoService {
   // }
   getSingle(id: string): Observable<Question>{
   
-    let q$ : Observable<Question>;
-    q$ = this.getAll().pipe(map((array: Question[]) => array[parseInt(id)-1]));
-    console.log("id", id);
-    console.log("q", q$);
-    return q$;
+    return this.getAll().pipe(map((array: Question[]) => array[parseInt(id)-1]));
+    // console.log("id", id);
+    // console.log("q", q$);
+    // return q$;
  
   }
 

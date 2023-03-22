@@ -6,7 +6,10 @@ import { QDetailsComponent } from './q-details/q-details.component';
 import { QListItemComponent } from './q-list-item/q-list-item.component';
 import { QListComponent } from './q-list/q-list.component';
 import { MatCheckboxModule} from '@angular/material/checkbox';
-
+import {MatRadioModule} from '@angular/material/radio'; 
+import {MatInputModule} from '@angular/material/input'; 
+import {MatIconModule} from '@angular/material/icon'; 
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [ 
     QListComponent,
@@ -15,7 +18,11 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
   imports: [
     CommonModule,
     QuestionsRoutingModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule,
+    MatInputModule,
+    MatIconModule,
+    FormsModule
    
   ],
 
