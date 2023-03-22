@@ -18,11 +18,11 @@ export class QListComponent {
     this.questions$ = this.service.getAll();
     console.log(this.questions$);
   }
-  ngOnInit(){
-    this.service.getAll().subscribe(data => {
-         this.questions = data;
-     });
-  }
+  // ngOnInit(){
+  //   this.service.getAll().subscribe(data => {
+  //        this.questions = data;
+  //    });
+  // }
   doSelect(question: Question){
     this.selectQuestion.emit(question)
   }

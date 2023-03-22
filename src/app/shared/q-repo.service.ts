@@ -14,9 +14,9 @@ export class QRepoService {
   // private question: Question = {};
   
   constructor(private http: HttpClient) {
-    this.getAll().subscribe(data => {
-      console.log(data);
-    });
+    // this.getAll().subscribe(data => {
+    //   console.log(data);
+    // });
 
     // this.questions$ = this.getAll()
     // .pipe(tap((res:any)=>{
