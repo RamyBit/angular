@@ -1,0 +1,7 @@
+<div class="details" *ngIf="question$ | async as question">
+    <ll-q-list-item [question]="question"></ll-q-list-item>
+   
+    <a class="button" routerLink="..">Back</a>
+    <!-- <button class="red" (click)="nextQuestion(question.qid)">Next</button> -->
+</div>
+<p>no question</p>

@@ -13,12 +13,16 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatSidenavModule} from '@angular/material/sidenav'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule} from '@angular/material/button';
+import { CheckModeComponent } from './check-mode/check-mode.component';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    CheckModeComponent,
   ],
   imports: [
     BrowserModule,

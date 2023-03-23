@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CheckModeComponent } from './check-mode/check-mode.component';
 import { HomeComponent } from './home/home.component';
 import { QDetailsComponent } from './questions/q-details/q-details.component';
 import { QListComponent } from './questions/q-list/q-list.component';
@@ -13,6 +14,15 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'check_mode/:id',
+    component: CheckModeComponent
+  },
+  {
+    path: 'check_mode',
+    redirectTo: 'check_mode/1',
+    pathMatch: 'full'
   },
   // {
   //   path:'questions',

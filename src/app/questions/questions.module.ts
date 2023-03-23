@@ -28,6 +28,9 @@ import {MatCardModule} from '@angular/material/card';
     MatCardModule
    
   ],
+  exports:[
+    QListItemComponent
+  ]
 
 })
 export class QuestionsModule { }
