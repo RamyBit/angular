@@ -16,8 +16,9 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'check_mode/:id',
-    component: CheckModeComponent
+    path: 'check_mode/:qid',
+    component: CheckModeComponent,
+    pathMatch: 'full'
   },
   {
     path: 'check_mode',
