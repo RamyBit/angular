@@ -14,13 +14,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./q-list-item.component.css']
 })
 export class QListItemComponent {
-  constructor(private aCheckService: ACheckService){
-    this.aCheckService.setAnswer(this.answers)
-  }
+  
   @Input() question?: Question;
   @Output() selectedAnswer? = new EventEmitter<Qanswer[]>;
   answers$: Observable<Qanswer[]> | undefined;
-  answers?: Qanswer[];
+  answer!: Question;
   gAns: any = [];
   cAns: any = [];
   
@@ -76,7 +74,8 @@ export class QListItemComponent {
       if((i.correct === i.givenanswer) && (i.correct === true)){
         this.ranswer = true;
         this.fanswer = false;
-        this.answers?.push(qans);
+        this.answer =query;
+        this.aCheckService.setAnswer(this.answer);
         }
       
       console.log('c : ga', i.correct, i.givenanswer, i.txt)
@@ -124,5 +123,8 @@ export class QListItemComponent {
   // getAnswers(){
   //   this.selectedAnswer?.emit(this.answers);
   // }
+  constructor(private aCheckService: ACheckService){
+    
+  }
 }
 

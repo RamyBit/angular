@@ -1,8 +1,9 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { QRepoService } from 'src/app/shared/q-repo.service';
 import { Question } from 'src/app/shared/question';
+import { ACheckService } from '../a-check.service';
 import { QListItemComponent } from '../questions/q-list-item/q-list-item.component';
 import { Qanswer } from '../shared/qanswer';
 
@@ -13,14 +14,19 @@ import { Qanswer } from '../shared/qanswer';
 })
 export class CheckModeComponent {
   question$: Observable<Question>;
+  answers$: Observable<Qanswer[]> | undefined;
+  answers: Question[] = [];
   @ViewChild (QListItemComponent, {static : true}) child? : QListItemComponent;
-
+  id : string;
   constructor(
     private service: QRepoService,
+    private aCheckService: ACheckService,
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.answers=this.aCheckService.getAnswers();
     const qid = this.route.snapshot.paramMap.get('qid')!;
+    this.id = qid;
     this.question$ = this.service.getSingle(qid);
     // router.events.subscribe(e => {
     //   if (e instanceof NavigationStart){
@@ -50,8 +56,13 @@ export class CheckModeComponent {
   }
 
   nextClick(){
+    let ans : Question | undefined;
     
-    console.log($event);
+
+    ans = this.aCheckService.getSingleAnswer(this.id);
+    // map((q : Question) => q.qid === parseInt(qid))).find(qa => qa.qanswers);
+  
+    console.log(ans);
   }
   // nextClick(){
   //   let answers: Qanswer[]|null; 
