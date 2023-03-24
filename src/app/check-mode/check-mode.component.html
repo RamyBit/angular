@@ -1,7 +1,16 @@
 <div class="details" *ngIf="question$ | async as question">
-    <ll-q-list-item [question]="question"></ll-q-list-item>
+    <ll-q-list-item  [question]="question" (answersResquest)="getAnswer($event)"></ll-q-list-item>
    
-    <a class="button" routerLink="..">Back</a>
-    <!-- <button class="red" (click)="nextQuestion(question.qid)">Next</button> -->
+    <div class="buttonbar">
+        <div class="center">
+            <button mat-button  (click)="backClick()">Back</button>
+            <!-- <button mat-button color="warn" [routerLink]="['/check_mode',question.qid +1 ]" >Skip</button> -->
+            <button mat-button color="warn" (click)="skipClick()" >Skip</button>
+            <button mat-button color="primary" (click)="nextClick()" >Next</button>
+        </div>
+    </div>
+    
+    
+    
 
 </div>

@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Question } from 'src/app/shared/question';
 import { MatRadioChange } from '@angular/material/radio';
 import { Qanswer } from 'src/app/shared/qanswer';
 import { ContentObserver } from '@angular/cdk/observers';
+import { ACheckService } from 'src/app/a-check.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -12,7 +14,13 @@ import { ContentObserver } from '@angular/cdk/observers';
   styleUrls: ['./q-list-item.component.css']
 })
 export class QListItemComponent {
-  @Input() question?: Question
+  constructor(private aCheckService: ACheckService){
+    this.aCheckService.setAnswer(this.answers)
+  }
+  @Input() question?: Question;
+  @Output() selectedAnswer? = new EventEmitter<Qanswer[]>;
+  answers$: Observable<Qanswer[]> | undefined;
+  answers?: Qanswer[];
   gAns: any = [];
   cAns: any = [];
   
@@ -25,6 +33,7 @@ export class QListItemComponent {
   hasInfo = false;
   fiAns = "";
   ranswer = false;
+  fanswer = false;
   showCorrect = false;
 
   ngOnChanges() {
@@ -56,8 +65,9 @@ export class QListItemComponent {
   radioButtonChange(data: MatRadioChange) {
     console.log(data.value);
   }
-  rbChange(query: Question, qans: Qanswer) {
+  checkSC(query: Question, qans: Qanswer) {
     this.ranswer = false;
+    this.fanswer = true;
     qans.givenanswer = true
     for (const i of query.qanswers) {
       if (i.txt != qans.txt) {
@@ -65,6 +75,8 @@ export class QListItemComponent {
       }
       if((i.correct === i.givenanswer) && (i.correct === true)){
         this.ranswer = true;
+        this.fanswer = false;
+        this.answers?.push(qans);
         }
       
       console.log('c : ga', i.correct, i.givenanswer, i.txt)
@@ -78,6 +90,7 @@ export class QListItemComponent {
    
     
     this.ranswer = false;
+    this.fanswer = true;
     qans.givenanswer = false;
     for (const i of query.qanswers) {
       if (i.txt == qans.txt) {
@@ -108,6 +121,8 @@ export class QListItemComponent {
     }
     
   }
-
+  // getAnswers(){
+  //   this.selectedAnswer?.emit(this.answers);
+  // }
 }
 

@@ -3,7 +3,8 @@
 
 
         <div class="q-list-item" *ngIf="question">
-            <a class="question" *ngIf="question" [routerLink]="['/questions',question.qid.toString()]" class="list-item">
+            <a class="question" *ngIf="question" [routerLink]="['/questions',question.qid.toString()]"
+                class="list-item">
                 <h2>Question:{{ question.qid }}</h2>
                 <p>
                     {{ question.qtxt}}
@@ -12,18 +13,23 @@
             </a>
             <div>
                 <div class="answers-sc" *ngIf="qtype.sc">
-                    <h2>Answers <span style="color: green;" *ngIf="ranswer">Correct</span></h2>
-                    
+                    <h2>Answers 
+                        <span style="color: green;" *ngIf="ranswer">Correct</span>
+                        <span style="color: red" *ngIf="fanswer">Wrong</span>
+                    </h2>
+
                     <ul>
                         <mat-radio-group aria-label="Select an option">
                             <li *ngFor="let ans of question?.qanswers; index as i">
 
                                 <p *ngFor="let text of ans?.txt">
 
-                                    <mat-radio-button [value]="i"
+                                    <!-- <mat-radio-button [value]="i"
                                         (change)="radioButtonChange($event)"
-                                        (click)="rbChange(question, ans)"
-                                        >{{text}}</mat-radio-button>
+                                        (click)="checkSCAns(question, ans)"
+                                        >{{text}}</mat-radio-button> -->
+                                    <mat-radio-button 
+                                        (click)="checkSC(question, ans)">{{text}}</mat-radio-button>
 
                                 </p>
 
@@ -38,7 +44,8 @@
 
                         <li *ngFor="let ans of question?.qanswers; index as i">
                             <p *ngFor="let text of ans?.txt">
-                                <mat-checkbox class="item-check" (change)="checkMCAns(question, ans)">{{text}}</mat-checkbox>
+                                <mat-checkbox class="item-check"
+                                    (change)="checkMCAns(question, ans)">{{text}}</mat-checkbox>
 
 
                             </p>
@@ -69,7 +76,7 @@
                 <div *ngIf="hasInfo">
                     <h2>Info:</h2>
                     {{question?.qinfo}}
-                    
+
                 </div>
             </div>
         </div>
