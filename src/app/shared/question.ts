@@ -6,5 +6,6 @@ export interface Question {
     qtxt: string[],
     qanswers: Qanswer[],
     qcorrect?: string,
-    qinfo: string
+    qinfo: string,
+    acorrect?:boolean
 }

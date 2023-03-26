@@ -19,8 +19,8 @@ export class QListItemComponent {
   @Output() selectedAnswer? = new EventEmitter<Qanswer[]>;
   answers$: Observable<Qanswer[]> | undefined;
   answer!: Question;
-  gAns: any = [];
-  cAns: any = [];
+  checkboxValues: Boolean[] = [];
+ 
   
   qtype: any = {
     sc: false,
@@ -37,6 +37,7 @@ export class QListItemComponent {
   ngOnChanges() {
     this.setType(this.question);
     this.checkInfo(this.question);
+    this.ranswer = false;
   }
 
   setType(q?: Question) {
@@ -65,6 +66,7 @@ export class QListItemComponent {
   }
   checkSC(query: Question, qans: Qanswer) {
     this.ranswer = false;
+    query.acorrect = false;
     this.fanswer = true;
     qans.givenanswer = true
     for (const i of query.qanswers) {
@@ -74,11 +76,10 @@ export class QListItemComponent {
       if((i.correct === i.givenanswer) && (i.correct === true)){
         this.ranswer = true;
         this.fanswer = false;
-        this.answer =query;
-        this.aCheckService.setAnswer(this.answer);
-        }
-      
-      console.log('c : ga', i.correct, i.givenanswer, i.txt)
+        
+         }
+     this.updateAnswer(query,this.ranswer);
+      // console.log('c : ga', i.correct, i.givenanswer, i.txt)
     }
 
 
@@ -87,44 +88,67 @@ export class QListItemComponent {
   }
   checkMCAns(query: Question, qans: Qanswer) {
    
+    let cAns: (boolean | Boolean)[]= [];
+    let gAns = [];
     
     this.ranswer = false;
     this.fanswer = true;
     qans.givenanswer = false;
-    for (const i of query.qanswers) {
-      if (i.txt == qans.txt) {
-        i.givenanswer = true;
+    for (let i=0 ; i< query.qanswers.length; i++) {
+      if(this.checkboxValues[i]){
+        gAns.push(this.checkboxValues[i]);
       }else{
-        i.givenanswer = false;
+        gAns.push(false);
       }
-      this.gAns.push(i.givenanswer);
-      this.cAns.push(i.correct)
+      
+      cAns.push(query.qanswers[i].correct)
     }
     
-      console.log("gans",this.gAns,"qa", this.cAns)
-      if(this.cAns === this.gAns){
+      console.log("gans",gAns,"qa", cAns)
+      const isEqual = gAns.every((element, index ) => element == cAns[index]);
+      if(isEqual){
         this.ranswer = true;
+        this.fanswer = false;
       }else{
         this.ranswer = false;
+        this.fanswer = true;
       }
-    this.cAns=[];
-    this.gAns =[];
+      // console.log(this.ranswer)
+      this.updateAnswer(query, this.ranswer);
   }
   checkFIAns(query: Question,a?: string) {
     for ( const i of query.qanswers){
       if(i.txt[0] === a){
         this.ranswer=true;
+        
       }else{
         this.ranswer = false;
+        
       }
     }
-    
+    console.log(this.ranswer)
+    this.updateAnswer(query,this.ranswer);
+  }
+  
+  
+  updateAnswer(query: Question, rans: boolean){
+    if(this.ranswer === true){
+      query.acorrect = this.ranswer;
+    }else{
+      query.acorrect = false
+    }
+    this.answer = query
+    this.aCheckService.setAnswer(this.answer);
+
   }
   // getAnswers(){
   //   this.selectedAnswer?.emit(this.answers);
   // }
   constructor(private aCheckService: ACheckService){
-    
+    this.ranswer= false;
+  }
+  ngOnInit(){
+    this.ranswer = false;
   }
 }
 

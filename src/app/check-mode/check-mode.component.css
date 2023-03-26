@@ -1,9 +1,12 @@
 .buttonbar{
     width:400px;
 }
+.statsbar{
+    width:400px;
+}
 
 .center{
-    background-color:#f9f9f9;
+    background-color:#ada8a8;
     text-align:center;
 }
 
@@ -11,8 +14,8 @@
     display:inline-block;
     margin-left:5px;
     margin-right:5px;
-    color:#FFF;
-    background-color:darkgray;
+    color:#000000;
+  
 }
 
 

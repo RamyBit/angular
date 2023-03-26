@@ -44,7 +44,7 @@
 
                         <li *ngFor="let ans of question?.qanswers; index as i">
                             <p *ngFor="let text of ans?.txt">
-                                <mat-checkbox class="item-check"
+                                <mat-checkbox class="item-check" [(ngModel)] ="checkboxValues[i]"
                                     (change)="checkMCAns(question, ans)">{{text}}</mat-checkbox>
 
 

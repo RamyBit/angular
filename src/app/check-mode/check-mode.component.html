@@ -1,4 +1,13 @@
 <div class="details" *ngIf="question$ | async as question ">
+    <div class="statsbar">
+        <div class="center">
+            <div *ngFor="let status of stats">
+                <p>
+                    {{status.txt}}: {{status.value}}
+                </p>
+            </div>
+        </div>
+    </div> 
     <ll-q-list-item  [question]="question"></ll-q-list-item>
    
     <div class="buttonbar">
@@ -9,5 +18,6 @@
             <button mat-button color="primary" (click)="nextClick()" >Next</button>
         </div>
     </div>  
+   
    
 </div>

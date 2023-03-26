@@ -16,18 +16,20 @@ export class CheckModeComponent {
   question$: Observable<Question>;
   answers$: Observable<Qanswer[]> | undefined;
   answers: Question[] = [];
-  @ViewChild (QListItemComponent, {static : true}) child? : QListItemComponent;
-  id : string;
+  stats: any;
+  @ViewChild(QListItemComponent, { static: true }) child?: QListItemComponent;
+  id: string;
   constructor(
     private service: QRepoService,
     private aCheckService: ACheckService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.answers=this.aCheckService.getAnswers();
+    this.answers = this.aCheckService.getAnswers();
     const qid = this.route.snapshot.paramMap.get('qid')!;
     this.id = qid;
     this.question$ = this.service.getSingle(qid);
+    this.stats = this.aCheckService.getCMStats();
     // router.events.subscribe(e => {
     //   if (e instanceof NavigationStart){
     //      qid = this.route.snapshot.paramMap.get('qid')!;
@@ -36,33 +38,45 @@ export class CheckModeComponent {
     //   }
     // })
   }
-  // ngOnInit(){
+  ngOnChange(){
   //   const qid = this.route.snapshot.paramMap.get('qid')!;
   //   this.question$= this.service.getSingle(qid);
-  // }
+  this.stats = this.aCheckService.getCMStats();
+  }
   backClick() {
     const qid = this.route.snapshot.paramMap.get('qid')!;
-    const qidn = parseInt(qid) -1;
+    const qidn = parseInt(qid) - 1;
     console.log(qidn);
     this.router.navigate(['/check_mode', qidn.toString()])
     this.question$ = this.service.getSingle(qidn.toString());
   }
   skipClick() {
+    this.aCheckService.skipedQCM ++;
+    this.nextPage();
+  }
+  nextPage(){
     const qid = this.route.snapshot.paramMap.get('qid')!;
     const qidn = parseInt(qid) + 1;
-    console.log(qidn);
     this.router.navigate(['/check_mode', qidn.toString()])
     this.question$ = this.service.getSingle(qidn.toString());
+    this.stats= this.aCheckService.getCMStats();
   }
 
-  nextClick(){
-    let ans : Question | undefined;
-    
-
-    ans = this.aCheckService.getSingleAnswer(this.id);
+  nextClick() {
+    const qid = this.route.snapshot.paramMap.get('qid')!;
+    let ans: Question | undefined;
+    ans = this.aCheckService.getSingleAnswer(qid);
     // map((q : Question) => q.qid === parseInt(qid))).find(qa => qa.qanswers);
-  
     console.log(ans);
+    console.log('ans.acorrect',ans?.acorrect);
+    if (ans?.acorrect) {
+      this.nextPage();
+    }else{
+      this.aCheckService.wrongACM++;
+      this.stats = this.aCheckService.getCMStats;
+      this.nextPage();
+    }
+
   }
   // nextClick(){
   //   let answers: Qanswer[]|null; 
