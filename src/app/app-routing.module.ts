@@ -5,6 +5,7 @@ import { ExamModeComponent } from './exam-mode/exam-mode.component';
 import { HomeComponent } from './home/home.component';
 import { QDetailsComponent } from './questions/q-details/q-details.component';
 import { QListComponent } from './questions/q-list/q-list.component';
+import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'exam_mode',
     component: ExamModeComponent,
+  },
+  {
+    path: 'result',
+    component: ResultComponent
   }
   // {
   //   path:'questions',

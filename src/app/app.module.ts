@@ -17,6 +17,7 @@ import { CheckModeComponent } from './check-mode/check-mode.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { ExamModeComponent } from './exam-mode/exam-mode.component';
+import { ResultComponent } from './result/result.component';
 
 
 
@@ -28,6 +29,7 @@ import { ExamModeComponent } from './exam-mode/exam-mode.component';
     CheckModeComponent,
     DialogComponent,
     ExamModeComponent,
+    ResultComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, skip } from 'rxjs';
 import { ACheckService } from '../a-check.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { QListItemComponent } from '../questions/q-list-item/q-list-item.component';
@@ -46,19 +46,28 @@ export class ExamModeComponent {
 
     this.question$ = this.service.getSingle(qidn.toString());
   }
-  exitClick() {
+  retryClick() {
   //   this.openDialog();
-  this.router.navigate(['exam_mode'])
+  window.location.reload(); 
+
    }
   nextQ() {
     if (this.aCheckService.checkScoreEM()) {
-      // this.openDialog();
+       this.openDialog();
     }
     this.index++;
     this.aCheckService.qCountEM++;
     this.question$ = this.service.getSingle(this.getQid());
     this.stats = this.aCheckService.getScoreEM();
+    console.log("wrong",this.aCheckService.wrongAEM);
+    console.log("skiped",this.aCheckService.skipedAEM );
+    if(this.index >= 60){
+      console.log("end");
+    }
 
+  }
+  openDialog() {
+    this.dialog.open(DialogComponent);
   }
 
   nextClick() {
@@ -71,17 +80,22 @@ export class ExamModeComponent {
     if (ans?.acorrect) {
       this.aCheckService.correctAEM++;
       this.nextQ();
-    } else {
+    } else if(ans?.acorrect === undefined) {
+      this.aCheckService.skipedAEM++;
+      this.nextQ();
+    }else{
+
+      this.aCheckService.wrongAEM++;
       this.nextQ();
     }
-
+        
   }
 
   // openDialog() {
   //   this.dialog.open(DialogComponent);
   // }
   rndGen() {
-    for (let i = 0; i < 60; i++) {
+    for (let i = 1; i < 60; i++) {
       this.rndQList.push(Math.floor(Math.random() * (120 - 2) + 1));
     }
   }
