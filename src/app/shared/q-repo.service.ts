@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators'
 })
 export class QRepoService {
   private qUrl = './assets/data/qdata.json'
+  
   // private questions$: Observable<Question[]>;
   // private questions : Question[]=[] ;
   // private question: Question = {};
@@ -45,5 +46,5 @@ export class QRepoService {
     // return q$;
  
   }
-
+ 
 } 

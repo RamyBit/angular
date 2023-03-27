@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CheckModeComponent } from './check-mode/check-mode.component';
+import { ExamModeComponent } from './exam-mode/exam-mode.component';
 import { HomeComponent } from './home/home.component';
 import { QDetailsComponent } from './questions/q-details/q-details.component';
 import { QListComponent } from './questions/q-list/q-list.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
     redirectTo: 'check_mode/1',
     pathMatch: 'full'
   },
+  {
+    path: 'exam_mode',
+    component: ExamModeComponent,
+  }
   // {
   //   path:'questions',
   //   component: QListComponent

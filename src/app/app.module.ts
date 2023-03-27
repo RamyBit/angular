@@ -14,6 +14,9 @@ import { MatSidenavModule} from '@angular/material/sidenav'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule} from '@angular/material/button';
 import { CheckModeComponent } from './check-mode/check-mode.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+import { ExamModeComponent } from './exam-mode/exam-mode.component';
 
 
 
@@ -23,6 +26,8 @@ import { CheckModeComponent } from './check-mode/check-mode.component';
     AppComponent,
     HomeComponent,
     CheckModeComponent,
+    DialogComponent,
+    ExamModeComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +41,7 @@ import { CheckModeComponent } from './check-mode/check-mode.component';
     MatSidenavModule,
     MatSlideToggleModule,
     MatButtonModule,
+    MatDialogModule
   ],
  
 

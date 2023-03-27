@@ -1,0 +1,24 @@
+ <div class="details" *ngIf="question$ | async as question ">
+    <div class="statsbar">
+        <div class="center">
+            <div *ngFor="let status of stats">
+                <p>
+                    {{status.txt}}: {{status.value}}
+                </p>
+            </div>
+        </div>
+        <span style="color: brown;">Lowest allowed score: 20%</span>
+    </div>
+    <ll-q-list-item [question]="question"></ll-q-list-item>
+
+    <div class="buttonbar">
+        <div class="center">
+            <button mat-button (click)="backClick()">Back</button> 
+            <button mat-button color="warn" (click)="exitClick()">Exit</button>
+            <button mat-button color="primary" (click)="nextClick()">Next</button> -->
+        </div>
+    </div>
+
+
+
+</div> 
