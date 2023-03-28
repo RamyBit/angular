@@ -15,14 +15,19 @@ import { Qanswer } from '../shared/qanswer';
   styleUrls: ['./check-mode.component.css'],
 })
 export class CheckModeComponent {
+  qType='qAll';
   question$: Observable<Question>;
   answers$: Observable<Qanswer[]> | undefined;
   answers: Question[] = [];
   stats: any;
-  qTypeIn: string;
   @Output() selectType = new EventEmitter<string>();
   @ViewChild(QListItemComponent, { static: true }) child?: QListItemComponent;
   id: string;
+  ngOnInit(){
+    this.service.Type.subscribe(data => {
+         this.qType = data;
+     });
+  }
   constructor(
     private service: QRepoService,
     private aCheckService: ACheckService,
@@ -95,9 +100,9 @@ export class CheckModeComponent {
     }
 
   }
-  doSelectType(){
-    this.selectType.emit(this.qType);
-  }
+  // doSelectType(){
+  //   this.selectType.emit(this.qType);
+  // }
   // ngOninit(){
   //   if(this.aCheckService.checkWrongACM()){
   //     this.openDialog();

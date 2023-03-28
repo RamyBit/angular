@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, Subject } from 'rxjs';
 import { Question } from './question';
 import { map } from 'rxjs/operators';
 
@@ -10,13 +10,19 @@ import { map } from 'rxjs/operators';
 })
 export class QRepoService {
   private qUrl = './assets/data/qdata-'
-  private qType$ =new Subject<string>();
+  private _qType =new BehaviorSubject<string>('qAll');
   qType = 'qAll';
   
   // private questions$: Observable<Question[]>;
   // private questions : Question[]=[] ;
   // private question: Question = {};
   
+  get Type(){
+    return this._qType.asObservable();
+  }
+  updateType(value: string){
+    this._qType.next(value);
+  }
   constructor(private http: HttpClient) {
     console.log(this.qUrl);
     // this.getAll().subscribe(data => {
@@ -29,6 +35,9 @@ export class QRepoService {
     // }));
   }
   getAll(type :string): Observable<Question[]>{
+    console.log("type",type);
+    this.updateUrl(type);
+    console.log(`${this.qUrl}`)
     return this.http.get<Question[]>(`${this.qUrl}`).pipe(
       catchError(err => {
         console.error(err);
@@ -51,7 +60,7 @@ export class QRepoService {
  
   }
   updateUrl(type: string){
-    this.qUrl =`./assets/data/qdata-${this.qType}.json`;
+    this.qUrl =`./assets/data/qdata-${type}.json`;
   }
  
   getQType(){

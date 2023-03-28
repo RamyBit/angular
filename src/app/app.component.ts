@@ -21,9 +21,9 @@ export class AppComponent {
 
   }
   qTypeUpdate(type: string){
-    console.log(type);
-    this.service.updateUrl(type);
-    return type;
+    // console.log(type);
+    this.service.updateType(type);
+    // this.service.updateUrl(type);
   }
 
   setType(qt?: string ) {
