@@ -1,4 +1,4 @@
-<h1>Questions</h1>
+<h1>Questions {{qType$ | async}}</h1>
 <ul class="question-list" *ngIf="questions$ | async as questions">
     <li *ngFor="let question of questions">
        <!-- <ll-q-list-item [question]="question"

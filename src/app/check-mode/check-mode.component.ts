@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
@@ -19,6 +19,8 @@ export class CheckModeComponent {
   answers$: Observable<Qanswer[]> | undefined;
   answers: Question[] = [];
   stats: any;
+  qTypeIn: string;
+  @Output() selectType = new EventEmitter<string>();
   @ViewChild(QListItemComponent, { static: true }) child?: QListItemComponent;
   id: string;
   constructor(
@@ -28,10 +30,11 @@ export class CheckModeComponent {
     private router: Router,
     public dialog: MatDialog,
   ) {
+    // this.qType = this.service.getQType();
     this.answers = this.aCheckService.getAnswers();
     const qid = this.route.snapshot.paramMap.get('qid')!;
     this.id = qid;
-    this.question$ = this.service.getSingle(qid);
+    this.question$ = this.service.getSingle(qid,this.qType);
     this.stats = this.aCheckService.getCMStats();
     if(this.aCheckService.checkWrongACM()){
       this.openDialog();
@@ -58,10 +61,9 @@ export class CheckModeComponent {
     const qidn = parseInt(qid) - 1;
     console.log(qidn);
     this.router.navigate(['/check_mode', qidn.toString()])
-    this.question$ = this.service.getSingle(qidn.toString());
+    this.question$ = this.service.getSingle(qidn.toString(),this.qType);
   }
   skipClick() {
-    this.openDialog();
     this.aCheckService.skipedQCM ++;
     this.nextPage();
   }
@@ -72,7 +74,7 @@ export class CheckModeComponent {
     const qid = this.route.snapshot.paramMap.get('qid')!;
     const qidn = parseInt(qid) + 1;
     this.router.navigate(['/check_mode', qidn.toString()])
-    this.question$ = this.service.getSingle(qidn.toString());
+    this.question$ = this.service.getSingle(qidn.toString(), this.qType);
     this.stats= this.aCheckService.getCMStats();
     
   }
@@ -92,6 +94,9 @@ export class CheckModeComponent {
       this.nextPage();
     }
 
+  }
+  doSelectType(){
+    this.selectType.emit(this.qType);
   }
   // ngOninit(){
   //   if(this.aCheckService.checkWrongACM()){

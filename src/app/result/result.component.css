@@ -1,13 +1,13 @@
 .buttonbar{
-    width:400px;
+    width:500px;
 }
 .statsbar{
-    width: 400px;
+    width: 500px;
 }
 
 .center{
-    background-color:#ada8a8;
     text-align:center;
+    padding: 10%;
 }
 
 .center div{
@@ -25,9 +25,12 @@
 
     margin-left: 25%;
     margin-right: 25%;
-    margin-top: -2%;
+    margin-top: 10%;
     margin-bottom: 10%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 100;
     font-size: xx-large;
+}
+p{
+    padding: 10px;
 }

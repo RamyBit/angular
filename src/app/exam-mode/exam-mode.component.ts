@@ -20,6 +20,7 @@ export class ExamModeComponent {
   answers: Question[] = [];
   stats: any;
   index = 0;
+  qType= 'qAll';
   private rndQList: number[] = [];
 
   constructor(
@@ -29,22 +30,31 @@ export class ExamModeComponent {
     private router: Router,
     public dialog: MatDialog,
   ) {
+  
+    // this.qType = this.service.getQType();
     this.rndGen();
     this.answers = this.aCheckService.getAnswers();
     const qid = this.getQid();
-    this.question$ = this.service.getSingle(qid);
+    this.question$ = this.service.getSingle(qid,this.qType);
     this.stats = this.aCheckService.getScoreEM();
 
   }
 
   getQid(): string{
-    return this.rndQList[this.index].toString();
+    if(this.index >= this.rndQList.length){
+      console.log("ended");
+      this.router.navigate(['result']);
+      return '60';
+    }else{
+      return this.rndQList[this.index].toString();
+    }
+    
   }
   backClick() {
     const qid = this.getQid();
     const qidn = parseInt(qid) - 1;
 
-    this.question$ = this.service.getSingle(qidn.toString());
+    this.question$ = this.service.getSingle(qidn.toString(), this.qType);
   }
   retryClick() {
   //   this.openDialog();
@@ -55,15 +65,16 @@ export class ExamModeComponent {
     if (this.aCheckService.checkScoreEM()) {
        this.openDialog();
     }
-    this.index++;
-    this.aCheckService.qCountEM++;
-    this.question$ = this.service.getSingle(this.getQid());
-    this.stats = this.aCheckService.getScoreEM();
-    console.log("wrong",this.aCheckService.wrongAEM);
-    console.log("skiped",this.aCheckService.skipedAEM );
-    if(this.index >= 60){
-      console.log("end");
-    }
+    
+      this.index++;
+      this.aCheckService.qCountEM++;
+      this.question$ = this.service.getSingle(this.getQid(), this.qType);
+      this.stats = this.aCheckService.getScoreEM();
+      console.log("wrong",this.aCheckService.wrongAEM);
+      console.log("skiped",this.aCheckService.skipedAEM );
+     
+ 
+   
 
   }
   openDialog() {

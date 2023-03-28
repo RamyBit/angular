@@ -16,11 +16,34 @@
     <mat-toolbar-row>
         <span style="font-size: 12px;">
             LLCE helps you to learn, check your skills and do a simulated Exam</span>
+            <span class="button-toggle">
+                <mat-button-toggle-group name="qTypeButton" #qTypeButton="matButtonToggleGroup"
+                (change)="qTypeUpdate($event.value)" aria-label="Font Style">
+                    <mat-button-toggle value="qAll" checked>All</mat-button-toggle>
+                    <mat-button-toggle value="qSC">Single-Choice</mat-button-toggle>
+                    <mat-button-toggle value="qMC">Muli-Choice</mat-button-toggle>
+                    <mat-button-toggle value="qFI">Fill-In</mat-button-toggle>
+                  </mat-button-toggle-group>
+            </span>
+            {{qType$ | async}}
+            
+              
     </mat-toolbar-row>
 </mat-toolbar>
 
 <main>
-
-    <router-outlet></router-outlet>
-
+    <router-outlet></router-outlet>    
 </main>
+
+<!-- <main [ngIf]="qTypeButton.value === 'qAll'">
+    <router-outlet></router-outlet>
+</main>
+<main [ngIf]="qTypeButton.value === 'qSC'">
+    <router-outlet></router-outlet>
+</main>
+<main [ngIf]="qTypeButton.value === 'qMC'">
+    <router-outlet></router-outlet>
+</main>
+<main [ngIf]="qTypeButton.value === 'qFI'">
+    <router-outlet></router-outlet>
+</main> -->

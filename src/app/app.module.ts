@@ -18,6 +18,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { ExamModeComponent } from './exam-mode/exam-mode.component';
 import { ResultComponent } from './result/result.component';
+import { MatButtonToggleModule} from '@angular/material/button-toggle';
+import { QButtonToggleComponent } from './q-button-toggle/q-button-toggle.component'
 
 
 
@@ -30,6 +32,8 @@ import { ResultComponent } from './result/result.component';
     DialogComponent,
     ExamModeComponent,
     ResultComponent,
+    QButtonToggleComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,8 @@ import { ResultComponent } from './result/result.component';
     MatSidenavModule,
     MatSlideToggleModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonToggleModule
   ],
  
 

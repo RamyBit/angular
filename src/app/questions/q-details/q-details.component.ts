@@ -10,14 +10,16 @@ import { Question } from 'src/app/shared/question';
   styleUrls: ['./q-details.component.css']
 })
 export class QDetailsComponent {
-question$: Observable<Question>;
+  question$: Observable<Question>;
+  qType = 'qAll';
 
-constructor(
-  private service: QRepoService,
-  private route: ActivatedRoute,
-  private router: Router
-){
-  const qid = this.route.snapshot.paramMap.get('qid')!;
-  this.question$ = this.service.getSingle(qid);
-}
+  constructor(
+    private service: QRepoService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    // this.qType = this.service.getQType();
+    const qid = this.route.snapshot.paramMap.get('qid')!;
+    this.question$ = this.service.getSingle(qid, this.qType);
+  }
 }

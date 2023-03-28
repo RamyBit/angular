@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon'; 
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card'; 
+import { QButtonToggleComponent } from '../q-button-toggle/q-button-toggle.component';
 
 @NgModule({
   declarations: [ 
@@ -25,8 +26,7 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     MatIconModule,
     FormsModule,
-    MatCardModule
-   
+    MatCardModule,   
   ],
   exports:[
     QListItemComponent

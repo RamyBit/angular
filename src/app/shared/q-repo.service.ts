@@ -1,20 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, Observable, of, Subject } from 'rxjs';
 import { Question } from './question';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class QRepoService {
-  private qUrl = './assets/data/qdata.json'
+  private qUrl = './assets/data/qdata-'
+  private qType$ =new Subject<string>();
+  qType = 'qAll';
   
   // private questions$: Observable<Question[]>;
   // private questions : Question[]=[] ;
   // private question: Question = {};
   
   constructor(private http: HttpClient) {
+    console.log(this.qUrl);
     // this.getAll().subscribe(data => {
     //   console.log(data);
     // });
@@ -24,7 +28,7 @@ export class QRepoService {
     //   this.questions = res;
     // }));
   }
-  getAll(): Observable<Question[]>{
+  getAll(type :string): Observable<Question[]>{
     return this.http.get<Question[]>(`${this.qUrl}`).pipe(
       catchError(err => {
         console.error(err);
@@ -38,13 +42,19 @@ export class QRepoService {
   //   console.log(this.question) ;
  
   // }
-  getSingle(id: string): Observable<Question>{
+  getSingle(id: string, type: string): Observable<Question>{
   
-    return this.getAll().pipe(map((array: Question[]) => array[parseInt(id)-1]));
+    return this.getAll(type).pipe(map((array: Question[]) => array[parseInt(id)-1]));
     // console.log("id", id);
     // console.log("q", q$);
     // return q$;
  
   }
+  updateUrl(type: string){
+    this.qUrl =`./assets/data/qdata-${this.qType}.json`;
+  }
  
+  getQType(){
+    return this.qType;
+  }
 } 
