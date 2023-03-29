@@ -26,6 +26,11 @@ export class CheckModeComponent {
   ngOnInit(){
     this.service.Type.subscribe(data => {
          this.qType = data;
+         const qid = this.route.snapshot.paramMap.get('qid')!;
+         this.id = qid;
+         this.question$ = this.service.getSingle(qid,this.qType);
+
+        //  console.log("qType",this.qType);
      });
   }
   constructor(

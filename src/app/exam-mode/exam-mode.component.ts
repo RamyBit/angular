@@ -19,8 +19,9 @@ export class ExamModeComponent {
   answers$: Observable<Qanswer[]> | undefined;
   answers: Question[] = [];
   stats: any;
-  index = 0;
+  index = 55;//0
   qType= 'qAll';
+  isNotAllowed = false;
   private rndQList: number[] = [];
 
   constructor(
@@ -39,6 +40,7 @@ export class ExamModeComponent {
     this.stats = this.aCheckService.getScoreEM();
 
   }
+
 
   getQid(): string{
     if(this.index >= this.rndQList.length){
@@ -106,9 +108,18 @@ export class ExamModeComponent {
   //   this.dialog.open(DialogComponent);
   // }
   rndGen() {
-    for (let i = 1; i < 60; i++) {
-      this.rndQList.push(Math.floor(Math.random() * (120 - 2) + 1));
-    }
+    // let rndN: number;
+    // let len: number;
+    // rndN = Math.floor(Math.random() * (120 - 2) + 1);
+    // this.rndQList.push(rndN);
+    // len = this.rndQList.length;
+    // console.log('len', this.rndQList.length)
+    while(this.rndQList.length < 60) {
+      console.log("rndQlist",this.rndQList.length)
+      const rndN = Math.floor(Math.random() * (120 - 2) + 1)
+      if(this.rndQList.indexOf(rndN)=== -1)
+        this.rndQList.push(rndN);
+      }
   }
 
 

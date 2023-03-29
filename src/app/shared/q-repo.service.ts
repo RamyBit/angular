@@ -52,7 +52,7 @@ export class QRepoService {
  
   // }
   getSingle(id: string, type: string): Observable<Question>{
-  
+    console.log('service type',type);
     return this.getAll(type).pipe(map((array: Question[]) => array[parseInt(id)-1]));
     // console.log("id", id);
     // console.log("q", q$);

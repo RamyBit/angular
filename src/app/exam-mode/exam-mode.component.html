@@ -1,5 +1,7 @@
  <div class="details" *ngIf="question$ | async as question ">
-    <div class="statsbar">
+    <div class="statsbar"><span>Filtering Question 
+        in Exam-Mode is not allowed.
+    </span>
         <div class="center">
             Question Nr. {{index +1}}
             <div *ngFor="let status of stats">
