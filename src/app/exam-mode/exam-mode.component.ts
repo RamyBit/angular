@@ -1,10 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, skip } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ACheckService } from '../a-check.service';
 import { DialogComponent } from '../dialog/dialog.component';
-import { QListItemComponent } from '../questions/q-list-item/q-list-item.component';
 import { QRepoService } from '../shared/q-repo.service';
 import { Qanswer } from '../shared/qanswer';
 import { Question } from '../shared/question';
@@ -19,10 +18,12 @@ export class ExamModeComponent {
   answers$: Observable<Qanswer[]> | undefined;
   answers: Question[] = [];
   stats: any;
-  index = 55;//0
+  index = 0;//0
+  maxQ=60;
   qType= 'qAll';
   isNotAllowed = false;
   private rndQList: number[] = [];
+  choices: number[] = [20,40,60,80,100,120];
 
   constructor(
     private service: QRepoService,
@@ -46,7 +47,7 @@ export class ExamModeComponent {
     if(this.index >= this.rndQList.length){
       console.log("ended");
       this.router.navigate(['result']);
-      return '60';
+      return this.maxQ.toString();
     }else{
       return this.rndQList[this.index].toString();
     }
@@ -114,12 +115,18 @@ export class ExamModeComponent {
     // this.rndQList.push(rndN);
     // len = this.rndQList.length;
     // console.log('len', this.rndQList.length)
-    while(this.rndQList.length < 60) {
-      console.log("rndQlist",this.rndQList.length)
+    while(this.rndQList.length < this.maxQ) {
+      console.log("maxQ",this.maxQ)
       const rndN = Math.floor(Math.random() * (120 - 2) + 1)
       if(this.rndQList.indexOf(rndN)=== -1)
         this.rndQList.push(rndN);
       }
+  }
+  setMaxQ(value: any){
+    this.maxQ = value.value;
+    this.rndQList = [];
+    this.rndGen();
+    console.log(this.maxQ);
   }
 
 

@@ -2,7 +2,9 @@
     width:400px;
 }
 .statsbar{
-    width: 400px;
+    display: flex;
+    width: 800px;
+    align-items: left;
 }
 
 .center{

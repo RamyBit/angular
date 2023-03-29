@@ -2,12 +2,14 @@
     width:400px;
 }
 .statsbar{
-    width:400px;
+    width: 800px;
+    align-content: flex-start;
+
 }
 
 .center{
     background-color:#ada8a8;
-    text-align:center;
+    text-align: center;
 }
 
 .center div{

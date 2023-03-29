@@ -20,6 +20,7 @@ import { ExamModeComponent } from './exam-mode/exam-mode.component';
 import { ResultComponent } from './result/result.component';
 import { MatButtonToggleModule} from '@angular/material/button-toggle';
 import { QButtonToggleComponent } from './q-button-toggle/q-button-toggle.component'
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -48,7 +49,8 @@ import { QButtonToggleComponent } from './q-button-toggle/q-button-toggle.compon
     MatSlideToggleModule,
     MatButtonModule,
     MatDialogModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSelectModule
   ],
  
 

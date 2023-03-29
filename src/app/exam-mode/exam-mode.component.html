@@ -1,27 +1,44 @@
- <div class="details" *ngIf="question$ | async as question ">
-    <div class="statsbar"><span>Filtering Question 
-        in Exam-Mode is not allowed.
-    </span>
+<div class="details" *ngIf="question$ | async as question ">
+    
+    <div class="statsbar">
+
+        
+
         <div class="center">
-            Question Nr. {{index +1}}
+            Question Nr. {{index +1}} Max:{{maxQ}}
             <div *ngFor="let status of stats">
                 <p>
                     {{status.txt}}: {{status.value}} %
                 </p>
-            </div>            
+            </div>
         </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Numbers of Question</mat-label>
+                <mat-select  (selectionChange) ="setMaxQ($event)"  >
+                    <mat-option *ngFor="let choice of choices" [value]="choice" >
+                        {{choice}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+        </div>
+        
+    </div>
+    <div><span>Filtering Question in Exam-Mode is not allowed.</span>
         <span style="color: brown;">Lowest allowed score: 20%</span>
     </div>
+    
     <ll-q-list-item [question]="question"></ll-q-list-item>
 
     <div class="buttonbar">
         <div class="center">
-            <button mat-button (click)="backClick()">Back</button> 
+            <button mat-button (click)="backClick()">Back</button>
             <button mat-button color="warn" (click)="retryClick()">Exit</button>
-            <button mat-button color="primary" (click)="nextClick()">Next</button> 
+            <button mat-button color="primary" (click)="nextClick()">Next</button>
         </div>
     </div>
 
 
 
-</div> 
+</div>
