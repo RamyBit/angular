@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CheckModeComponent } from './check-mode/check-mode.component';
 import { ExamModeComponent } from './exam-mode/exam-mode.component';
 import { HomeComponent } from './home/home.component';
+import { LearnModeComponent } from './learn-mode/learn-mode.component';
 import { QDetailsComponent } from './questions/q-details/q-details.component';
 import { QListComponent } from './questions/q-list/q-list.component';
 import { ResultComponent } from './result/result.component';
@@ -34,15 +35,11 @@ const routes: Routes = [
   {
     path: 'result',
     component: ResultComponent
+  },
+  {
+    path: 'learn_mode',
+    component: LearnModeComponent,
   }
-  // {
-  //   path:'questions',
-  //   component: QListComponent
-  // },
-  // {
-  //   path: 'questions/:id',
-  //   component: QDetailsComponent
-  // }
 ];
 
 @NgModule({

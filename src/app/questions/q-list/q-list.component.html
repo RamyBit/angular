@@ -1,8 +1,24 @@
 <h1>Questions {{qType$ | async}}</h1>
-<ul class="question-list" *ngIf="questions$ | async as questions">
+
+<!-- <h1>
+    Lazy loaded infinite scroller
+</h1> -->
+<!-- <div *ngIf="questions$ | async as questions">
+    <div class="container" infiniteScroll [infiniteScrollDistance]="0.5" (scrolled)="onScroll($event)">
+        <div *ngFor="let question of questions" class="boxes">
+            <ll-q-list-item [question]="question"></ll-q-list-item>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div *ngIf="!(questions$ | async)?.length">
+    No questions available.">
+</div> -->
+
+
+
+    <ul class="question-list" *ngIf="questions$ | async as questions">
     <li *ngFor="let question of questions">
-       <!-- <ll-q-list-item [question]="question"
-       (click)="doSelect(question)"></ll-q-list-item> -->
        <ll-q-list-item [question]="question"></ll-q-list-item>
     </li>
     <li *ngIf="!(questions$ | async)?.length">

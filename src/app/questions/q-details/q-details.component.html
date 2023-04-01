@@ -1,4 +1,37 @@
-<div class="details" *ngIf="question$ | async as question">
+<div class="details" *ngIf="question$ | async as question ">
+    <div class="statsbar">
+        <div>
+            Correct Answer: <span *ngIf="showAnswer"> {{CorrectAns}}</span> 
+        </div>
+    </div> 
+    <ll-q-list-item [question]="question" (selectedCorrect)="handelCorrect($event)" ></ll-q-list-item>
+
+    <div class="buttonbar">
+        <div class="center">
+            <button mat-button (click)="backClick()">Back</button>
+            <button mat-button color="warn" (click)="showClick()">Show Answer</button> 
+            <button mat-button color="primary" (click)="nextClick()">Next</button>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="details" *ngIf="question$ | async as question">
     
     <h2>Question:{{ question.qid }}</h2>
     <p>
@@ -14,6 +47,6 @@
         {{question?.qinfo}}
    
     <a class="button" routerLink="..">Back</a>
-    <!-- <button class="red" (click)="nextQuestion(question.qid)">Next</button> -->
+     <button class="red" (click)="nextQuestion(question.qid)">Next</button> 
 
-</div>
+</div> -->

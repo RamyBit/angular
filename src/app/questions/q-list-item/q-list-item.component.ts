@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 export class QListItemComponent {
   
   @Input() question?: Question;
-  @Output() selectedAnswer? = new EventEmitter<Qanswer[]>;
+  @Output() selectedCorrect = new EventEmitter<string>();
   answers$: Observable<Qanswer[]> | undefined;
   answer!: Question;
   checkboxValues: Boolean[] = [];
@@ -141,14 +141,24 @@ export class QListItemComponent {
     this.aCheckService.setAnswer(this.answer);
 
   }
-  // getAnswers(){
-  //   this.selectedAnswer?.emit(this.answers);
-  // }
+  getCorrect(){
+    
+    if(this.question?.qtyp != 'fi'){
+      this.selectedCorrect?.emit(this.question?.qcorrect);
+      console.log(this.question)
+    }else{
+      this.selectedCorrect?.emit(this.question?.qanswers[0].txt[0]);
+      console.log(this.question?.qanswers[0].txt[0])
+    }
+    console.log("test out ")
+  }
   constructor(private aCheckService: ACheckService){
     this.ranswer= false;
+    this.getCorrect();
   }
   ngOnInit(){
     this.ranswer = false;
+    this.getCorrect();
   }
 }
 

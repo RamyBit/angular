@@ -1,12 +1,11 @@
 <mat-toolbar color="primary" class="toolbar">
     <mat-toolbar-row>
-        <button mat-icon-button>
-        </button>
+        <img class="toolbar-icon"src="../assets/images/tux.png" width="40" height="40">
         <h1>LLCE</h1>
         <span class="toolbar-spacer"></span>
         <div>
             <a mat-button [routerLink]="'/home'"> Home </a>
-            <a mat-button [routerLink]="'/questions'"> Learn Mode </a>
+            <a mat-button [routerLink]="'/learn_mode'"> Learn Mode </a>
             <a mat-button [routerLink]="'/check_mode'"> Check Mode </a>
             <a mat-button [routerLink]="'/exam_mode'"> Exam Mode </a>
 
@@ -25,7 +24,7 @@
                     <mat-button-toggle value="qFI">Fill-In</mat-button-toggle>
                   </mat-button-toggle-group>
             </span>
-            {{qType$ | async}}
+            <!-- {{qType$ | async}} -->
             
               
     </mat-toolbar-row>
@@ -34,16 +33,3 @@
 <main>
     <router-outlet></router-outlet>    
 </main>
-
-<!-- <main [ngIf]="qTypeButton.value === 'qAll'">
-    <router-outlet></router-outlet>
-</main>
-<main [ngIf]="qTypeButton.value === 'qSC'">
-    <router-outlet></router-outlet>
-</main>
-<main [ngIf]="qTypeButton.value === 'qMC'">
-    <router-outlet></router-outlet>
-</main>
-<main [ngIf]="qTypeButton.value === 'qFI'">
-    <router-outlet></router-outlet>
-</main> -->

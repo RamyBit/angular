@@ -10,8 +10,20 @@ import { Question } from 'src/app/shared/question';
   styleUrls: ['./q-details.component.css']
 })
 export class QDetailsComponent {
+
   question$: Observable<Question>;
   qType = 'qAll';
+  CorrectAns = '';
+  showAnswer = false;
+
+
+  handelCorrect($event: string) {
+    this.CorrectAns = $event;
+    console.log($event);
+  }
+  showClick() {
+    this.showAnswer = true;
+  }
 
   constructor(
     private service: QRepoService,
@@ -22,4 +34,29 @@ export class QDetailsComponent {
     const qid = this.route.snapshot.paramMap.get('qid')!;
     this.question$ = this.service.getSingle(qid, this.qType);
   }
+
+  backClick() {
+    const qid = this.route.snapshot.paramMap.get('qid')!;
+    const qidn = parseInt(qid) - 1;
+    this.router.navigate(['/questions', qidn.toString()])
+    this.question$ = this.service.getSingle(qidn.toString(), this.qType);
+  }
+
+  nextPage() {
+
+    const qid = this.route.snapshot.paramMap.get('qid')!;
+    const qidn = parseInt(qid) + 1;
+    this.router.navigate(['/questions', qidn.toString()])
+    this.question$ = this.service.getSingle(qidn.toString(), this.qType);
+
+
+  }
+
+  nextClick() {
+    this.nextPage()
+  }
+  noOninit(){
+    this.showAnswer=false;
+  }
+
 }

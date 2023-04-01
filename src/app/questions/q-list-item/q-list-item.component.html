@@ -24,10 +24,6 @@
 
                                 <p *ngFor="let text of ans?.txt">
 
-                                    <!-- <mat-radio-button [value]="i"
-                                        (change)="radioButtonChange($event)"
-                                        (click)="checkSCAns(question, ans)"
-                                        >{{text}}</mat-radio-button> -->
                                     <mat-radio-button 
                                         (click)="checkSC(question, ans)">{{text}}</mat-radio-button>
 
@@ -67,15 +63,6 @@
                         {{fiAns}}
                     </form>
 
-
-                </div>
-                <div *ngIf="showCorrect">
-                    <h2>Correct Answer</h2>
-                    {{ question?.qcorrect }}
-                </div>
-                <div *ngIf="hasInfo">
-                    <h2>Info:</h2>
-                    {{question?.qinfo}}
 
                 </div>
             </div>
