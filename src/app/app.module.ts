@@ -22,6 +22,7 @@ import { MatButtonToggleModule} from '@angular/material/button-toggle';
 import { QButtonToggleComponent } from './q-button-toggle/q-button-toggle.component'
 import {MatSelectModule} from '@angular/material/select';
 import { LearnModeComponent } from './learn-mode/learn-mode.component';
+import { SummaryComponent } from './summary/summary.component';
 
 
 
@@ -35,6 +36,7 @@ import { LearnModeComponent } from './learn-mode/learn-mode.component';
     ResultComponent,
     QButtonToggleComponent,
     LearnModeComponent,
+    SummaryComponent,
     
   ],
   imports: [

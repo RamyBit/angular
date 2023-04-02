@@ -19,7 +19,7 @@ export class ACheckService {
   minScoreEM = 20; //%
   setAnswer(answer : Question){
     const existAns= this.answers.find(a => a.qid === answer.qid);
-    const existAnsIndex = this.answers.findIndex(a=> a.qid = answer.qid);
+    const existAnsIndex = this.answers.findIndex(a=> a.qid === answer.qid);
     if(existAns?.qid === answer.qid){
     this.answers[existAnsIndex] = answer;
   }else{

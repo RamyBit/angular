@@ -128,6 +128,5 @@ export class ExamModeComponent {
     this.rndGen();
     console.log(this.maxQ);
   }
-
-
+  
 }

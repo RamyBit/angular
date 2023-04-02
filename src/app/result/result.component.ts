@@ -15,4 +15,7 @@ export class ResultComponent {
     this.ignoredQ = this.aCheckService.skipedAEM;
     this.score = this.aCheckService.getScoreEM()[0].value;
   }
+  ngOnDestroy(){
+    this.aCheckService.answers = [];
+  }
 }

@@ -1,0 +1,30 @@
+
+.center{
+    text-align:center;
+    padding: 10%;
+}
+
+.center div{
+    display:inline-block;
+    margin-left:5px;
+    margin-right:5px;
+    color:#000000;
+  
+}
+
+
+.summery{
+    min-width: 500px;
+    min-height:100px;
+
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 100;
+    font-size: xx-large;
+}
+p{
+    padding: 10px;
+}

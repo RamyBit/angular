@@ -19,12 +19,12 @@
                     </h2>
 
                     <ul>
-                        <mat-radio-group aria-label="Select an option">
+                        <mat-radio-group aria-label="Select an answer">
                             <li *ngFor="let ans of question?.qanswers; index as i">
 
                                 <p *ngFor="let text of ans?.txt">
 
-                                    <mat-radio-button 
+                                    <mat-radio-button [value]="i"
                                         (click)="checkSC(question, ans)">{{text}}</mat-radio-button>
 
                                 </p>
@@ -51,7 +51,10 @@
                     </ul>
                 </div>
                 <div class="answers-fi" *ngIf="qtype.fi">
-                    <h2>Answers<span style="color: green;" *ngIf="ranswer">Correct</span></h2>
+                    <h2>Answers 
+                        <span style="color: green;" *ngIf="ranswer">Correct</span>
+                        <span style="color: red" *ngIf="fanswer">Wrong</span>
+                    </h2>
                     <form class="fi-form">
                         <mat-form-field class="fi-full-width">
                             <span matPrefix> </span>
@@ -59,8 +62,7 @@
                                 (change)="checkFIAns(question,fiAns)">
                             <button matSuffix mat-button><mat-icon>spellcheck</mat-icon></button>
                         </mat-form-field>
-                        <br />
-                        {{fiAns}}
+                        
                     </form>
 
 

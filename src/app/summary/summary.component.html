@@ -1,0 +1,22 @@
+
+<div class="summary" >
+    
+        <div class="center">
+            <h1>Summary Check Mode</h1>
+            <p style="color: brown;">Wrong answers: {{this.wrongAns}} </p>
+            <p style="color: blue;">Ignored Questions: {{this.ignoredQ}} </p>
+            <h1>Summary Exam Mode</h1>
+            <p style="color: brown;">Wrong answers: {{this.wrongAnsEM}} </p>
+            <p style="color: blue;">Ignored Questions: {{this.ignoredQEM}} </p>
+        </div>
+
+      
+<div>
+    <ul>
+        <li *ngFor="let ans of answers">
+            Question ID: {{ans.qid}} <span *ngIf="ans.acorrect"> was correct.</span>
+            <span *ngIf="!ans.acorrect"> was wrong or ignored</span>
+        </li>
+    </ul>
+</div>
+ 

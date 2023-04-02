@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Question } from 'src/app/shared/question';
 import { MatRadioChange } from '@angular/material/radio';
 import { Qanswer } from 'src/app/shared/qanswer';
-import { ContentObserver } from '@angular/cdk/observers';
 import { ACheckService } from 'src/app/a-check.service';
 import { Observable } from 'rxjs';
 
@@ -104,7 +103,7 @@ export class QListItemComponent {
       cAns.push(query.qanswers[i].correct)
     }
     
-      console.log("gans",gAns,"qa", cAns)
+      // console.log("gans",gAns,"qa", cAns)
       const isEqual = gAns.every((element, index ) => element == cAns[index]);
       if(isEqual){
         this.ranswer = true;
@@ -123,6 +122,7 @@ export class QListItemComponent {
         
       }else{
         this.ranswer = false;
+        this.fanswer = true;
         
       }
     }
@@ -131,34 +131,41 @@ export class QListItemComponent {
   }
   
   
-  updateAnswer(query: Question, rans: boolean){
+  updateAnswer(query: Question, rans?: boolean){
     if(this.ranswer === true){
       query.acorrect = this.ranswer;
-    }else{
+    }else if(this.fanswer === true){
       query.acorrect = false
+    }else{
+      query.acorrect = undefined;
     }
     this.answer = query
-    this.aCheckService.setAnswer(this.answer);
+    this.aCheckService.setAnswer(query);
 
   }
   getCorrect(){
     
     if(this.question?.qtyp != 'fi'){
-      this.selectedCorrect?.emit(this.question?.qcorrect);
+      this.selectedCorrect?.emit(this.question?.qcorrect + '   |Info:' + this.question?.qinfo);
       console.log(this.question)
     }else{
-      this.selectedCorrect?.emit(this.question?.qanswers[0].txt[0]);
+      this.selectedCorrect?.emit(this.question?.qanswers[0].txt[0] + '   |Info:' 
+      + this.question.qinfo);
       console.log(this.question?.qanswers[0].txt[0])
     }
-    console.log("test out ")
   }
   constructor(private aCheckService: ACheckService){
     this.ranswer= false;
     this.getCorrect();
+    
+    
   }
   ngOnInit(){
     this.ranswer = false;
     this.getCorrect();
+    if(this.question){
+      this.updateAnswer(this.question,undefined);
+    }
   }
 }
 

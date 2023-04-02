@@ -7,6 +7,7 @@ import { LearnModeComponent } from './learn-mode/learn-mode.component';
 import { QDetailsComponent } from './questions/q-details/q-details.component';
 import { QListComponent } from './questions/q-list/q-list.component';
 import { ResultComponent } from './result/result.component';
+import { SummaryComponent } from './summary/summary.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,11 @@ const routes: Routes = [
   {
     path: 'learn_mode',
     component: LearnModeComponent,
-  }
+  },
+  {
+    path: 'summary',
+    component: SummaryComponent
+  },
 ];
 
 @NgModule({

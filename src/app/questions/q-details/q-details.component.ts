@@ -15,7 +15,7 @@ export class QDetailsComponent {
   qType = 'qAll';
   CorrectAns = '';
   showAnswer = false;
-
+  id:string | undefined;
 
   handelCorrect($event: string) {
     this.CorrectAns = $event;
@@ -23,6 +23,16 @@ export class QDetailsComponent {
   }
   showClick() {
     this.showAnswer = true;
+  }
+  ngOnInit(){
+    this.service.Type.subscribe(data => {
+         this.qType = data;
+         const qid = this.route.snapshot.paramMap.get('qid')!;
+         this.id = qid;
+         this.question$ = this.service.getSingle(qid,this.qType);
+
+        //  console.log("qType",this.qType);
+     });
   }
 
   constructor(
@@ -53,10 +63,8 @@ export class QDetailsComponent {
   }
 
   nextClick() {
+    this.showAnswer=false;
     this.nextPage()
   }
-  noOninit(){
-    this.showAnswer=false;
-  }
-
+  
 }

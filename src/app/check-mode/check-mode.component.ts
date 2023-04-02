@@ -90,6 +90,7 @@ export class CheckModeComponent {
   }
 
   nextClick() {
+    console.log('answers', this.aCheckService.answers)
     const qid = this.route.snapshot.paramMap.get('qid')!;
     let ans: Question | undefined;
     ans = this.aCheckService.getSingleAnswer(qid);
@@ -121,6 +122,5 @@ export class CheckModeComponent {
   //   answers = this.child.getAnswers();
   //   console.log()
   // }
-
-
+  
 }
