@@ -3,8 +3,6 @@ import { Observable } from 'rxjs';
 import { QRepoService } from '../../shared/q-repo.service';
 import { Question } from '../../shared/question';
 
-
-
 @Component({
   selector: 'll-q-list',
   templateUrl: './q-list.component.html',

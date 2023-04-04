@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Qanswer } from './shared/qanswer';
-import { Question } from './shared/question';
+import { Question } from '../shared/question';
 
 @Injectable({
   providedIn: 'root'

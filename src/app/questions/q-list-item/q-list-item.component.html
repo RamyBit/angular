@@ -1,7 +1,5 @@
 <mat-card class="q-card">
     <mat-card-content>
-
-
         <div class="q-list-item" *ngIf="question">
             <a class="question" *ngIf="question" [routerLink]="['/questions',question.qid.toString()]"
                 class="list-item">
@@ -23,10 +21,8 @@
                             <li *ngFor="let ans of question?.qanswers; index as i">
 
                                 <p *ngFor="let text of ans?.txt">
-
                                     <mat-radio-button [value]="i"
                                         (click)="checkSC(question, ans)">{{text}}</mat-radio-button>
-
                                 </p>
 
                             </li>
@@ -42,12 +38,8 @@
                             <p *ngFor="let text of ans?.txt">
                                 <mat-checkbox class="item-check" [(ngModel)] ="checkboxValues[i]"
                                     (change)="checkMCAns(question, ans)">{{text}}</mat-checkbox>
-
-
                             </p>
-
                         </li>
-
                     </ul>
                 </div>
                 <div class="answers-fi" *ngIf="qtype.fi">
@@ -61,11 +53,8 @@
                             <input type="text" matInput placeholder="Answer" name="fiAns" [(ngModel)]="fiAns"
                                 (change)="checkFIAns(question,fiAns)">
                             <button matSuffix mat-button><mat-icon>spellcheck</mat-icon></button>
-                        </mat-form-field>
-                        
+                        </mat-form-field>                        
                     </form>
-
-
                 </div>
             </div>
         </div>

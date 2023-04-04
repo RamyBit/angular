@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ACheckService } from '../a-check.service';
+import { ACheckService } from '../shared/a-check.service';
 import { Question } from '../shared/question';
 
 @Component({

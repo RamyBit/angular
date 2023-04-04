@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Question } from 'src/app/shared/question';
 import { MatRadioChange } from '@angular/material/radio';
 import { Qanswer } from 'src/app/shared/qanswer';
-import { ACheckService } from 'src/app/a-check.service';
+import { ACheckService } from 'src/app/shared/a-check.service';
 import { Observable } from 'rxjs';
 
 
@@ -78,12 +78,7 @@ export class QListItemComponent {
         
          }
      this.updateAnswer(query,this.ranswer);
-      // console.log('c : ga', i.correct, i.givenanswer, i.txt)
     }
-
-
-
-    // console.log('QNr: ', qid, ' correct?: ', ans.correct)
   }
   checkMCAns(query: Question, qans: Qanswer) {
    
@@ -103,7 +98,6 @@ export class QListItemComponent {
       cAns.push(query.qanswers[i].correct)
     }
     
-      // console.log("gans",gAns,"qa", cAns)
       const isEqual = gAns.every((element, index ) => element == cAns[index]);
       if(isEqual){
         this.ranswer = true;
@@ -112,7 +106,6 @@ export class QListItemComponent {
         this.ranswer = false;
         this.fanswer = true;
       }
-      // console.log(this.ranswer)
       this.updateAnswer(query, this.ranswer);
   }
   checkFIAns(query: Question,a?: string) {

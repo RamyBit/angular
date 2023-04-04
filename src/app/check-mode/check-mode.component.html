@@ -1,4 +1,3 @@
-<!-- <ll-q-button-toggle [(qType)] = "qType"></ll-q-button-toggle> -->
 <div class="details" *ngIf="question$ | async as question ">
     <div class="statsbar">
         <div class="center">
@@ -15,7 +14,6 @@
     <div class="buttonbar">
         <div class="center">
             <button mat-button  (click)="backClick()">Back</button>
-            <!-- <button mat-button color="warn" [routerLink]="['/check_mode',question.qid +1 ]" >Skip</button> -->
             <button mat-button color="warn" (click)="skipClick()" >Skip</button>
             <button mat-button color="primary" (click)="nextClick()" >Next</button>
         </div>

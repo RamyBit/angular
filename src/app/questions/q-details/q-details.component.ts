@@ -30,8 +30,6 @@ export class QDetailsComponent {
          const qid = this.route.snapshot.paramMap.get('qid')!;
          this.id = qid;
          this.question$ = this.service.getSingle(qid,this.qType);
-
-        //  console.log("qType",this.qType);
      });
   }
 
@@ -58,8 +56,6 @@ export class QDetailsComponent {
     const qidn = parseInt(qid) + 1;
     this.router.navigate(['/questions', qidn.toString()])
     this.question$ = this.service.getSingle(qidn.toString(), this.qType);
-
-
   }
 
   nextClick() {
