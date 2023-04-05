@@ -1,0 +1,18 @@
+
+    <mat-form-field class="search-full-width">
+        <input type="tel" matInput  placeholder="Search" autocomplete="off" aria-label="Search"
+        [class.loading] = "isLoading"
+        #searchInput (input)="input$.next(searchInput.value)">
+        <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+    </mat-form-field>
+    <ul class="search-results" *ngIf="searchresults$ | async as results">
+        <li *ngFor="let question of results">
+            <ll-q-list-item [question]="question"></ll-q-list-item>
+        </li>
+        <li *ngIf="!results.length">No results</li>
+    </ul>
+
+
+
+
+ 

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, of, Subject } from 'rxjs';
 import { Question } from './question';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -13,9 +13,6 @@ export class QRepoService {
   private _qType =new BehaviorSubject<string>('qAll');
   qType = 'qAll';
   
-  // private questions$: Observable<Question[]>;
-  // private questions : Question[]=[] ;
-  // private question: Question = {};
   
   get Type(){
     return this._qType.asObservable();
@@ -25,14 +22,7 @@ export class QRepoService {
   }
   constructor(private http: HttpClient) {
     console.log(this.qUrl);
-    // this.getAll().subscribe(data => {
-    //   console.log(data);
-    // });
-
-    // this.questions$ = this.getAll()
-    // .pipe(tap((res:any)=>{
-    //   this.questions = res;
-    // }));
+    
   }
   getAll(type :string): Observable<Question[]>{
     console.log("type",type);
@@ -45,19 +35,11 @@ export class QRepoService {
       })
     )
   }
-  // getSingle(id: number): any{
   
-  //   this.question = this.getAll().pipe(map(qs => qs.find(q => q.qid === id)));
-  //   console.log(this.question) ;
- 
-  // }
   getSingle(id: string, type: string): Observable<Question>{
     console.log('service type',type);
     return this.getAll(type).pipe(map((array: Question[]) => array[parseInt(id)-1]));
-    // console.log("id", id);
-    // console.log("q", q$);
-    // return q$;
- 
+    
   }
   updateUrl(type: string){
     this.qUrl =`./assets/data/qdata-${type}.json`;
@@ -66,4 +48,9 @@ export class QRepoService {
   getQType(){
     return this.qType;
   }
+
+  getAllSearch(term: string): Observable<Question[]>{
+    return this.getAll('qAll').pipe(map((questions: Question[]) => questions.filter(q =>  q.qtxt.find(txt => txt.includes(term)) ))) 
+  }
 } 
+
